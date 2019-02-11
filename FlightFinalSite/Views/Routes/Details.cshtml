@@ -1,0 +1,66 @@
+﻿@model FlightFinalSite.Models.Route
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Route</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RouteFlightNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouteFlightNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RouteDepAirport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouteDepAirport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RouteArrAirport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouteArrAirport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RouteDepDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouteDepDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RouteArrTDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouteArrTDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plane.PlaneName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plane.PlaneName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RouteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

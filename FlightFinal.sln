@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FlightFinal", "FlightFinal\FlightFinal.sqlproj", "{5124C617-4731-4BB2-9BCF-4418301DA61C}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FlightFinalData", "FlightFinal\FlightFinalData.sqlproj", "{5124C617-4731-4BB2-9BCF-4418301DA61C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightFinalSite", "FlightFinalSite\FlightFinalSite.csproj", "{EF4781A5-74C5-4798-ADE1-D584EC015776}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{5124C617-4731-4BB2-9BCF-4418301DA61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5124C617-4731-4BB2-9BCF-4418301DA61C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5124C617-4731-4BB2-9BCF-4418301DA61C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EF4781A5-74C5-4798-ADE1-D584EC015776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4781A5-74C5-4798-ADE1-D584EC015776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4781A5-74C5-4798-ADE1-D584EC015776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4781A5-74C5-4798-ADE1-D584EC015776}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

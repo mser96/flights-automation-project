@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FlightFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Airport">
+          <Key>
+            <PropertyRef Name="AirportID" />
+          </Key>
+          <Property Name="AirportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AirportName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AirportCountry" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AirportCity" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AirportAbbre" Type="nchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PassengerID" />
+          </Key>
+          <Property Name="PassengerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassengerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassengerSurname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassengerTel" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="PassengerBirthDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plane">
+          <Key>
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Name="PlaneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaneName" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PlaneType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PlaneCapacity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="RouteID" />
+          </Key>
+          <Property Name="RouteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RouteFlightNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="RoutePlaneID" Type="int" Nullable="false" />
+          <Property Name="RouteDepAirport" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RouteArrAirport" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RouteDepDate" Type="date" Nullable="false" />
+          <Property Name="RouteArrTDate" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Route_Plane">
+          <End Role="Plane" Type="Self.Plane" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plane">
+              <PropertyRef Name="PlaneID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="RoutePlaneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlightFinalModelStoreContainer">
+          <EntitySet Name="Airport" EntityType="Self.Airport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plane" EntityType="Self.Plane" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Route_Plane" Association="Self.FK_Route_Plane">
+            <End Role="Plane" EntitySet="Plane" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FlightFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Airport">
+          <Key>
+            <PropertyRef Name="AirportID" />
+          </Key>
+          <Property Name="AirportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AirportName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AirportCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AirportCity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AirportAbbre" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PassengerID" />
+          </Key>
+          <Property Name="PassengerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassengerName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassengerSurname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassengerTel" Type="String" MaxLength="19" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassengerBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Plane">
+          <Key>
+            <PropertyRef Name="PlaneID" />
+          </Key>
+          <Property Name="PlaneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaneName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlaneType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlaneCapacity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_Route_Plane" FromRole="Plane" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="RouteID" />
+          </Key>
+          <Property Name="RouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RouteFlightNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoutePlaneID" Type="Int32" Nullable="false" />
+          <Property Name="RouteDepAirport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RouteArrAirport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RouteDepDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RouteArrTDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Plane" Relationship="Self.FK_Route_Plane" FromRole="Route" ToRole="Plane" />
+        </EntityType>
+        <Association Name="FK_Route_Plane">
+          <End Role="Plane" Type="Self.Plane" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plane">
+              <PropertyRef Name="PlaneID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="RoutePlaneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlightFinalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Airport" EntityType="Self.Airport" />
+          <EntitySet Name="Passenger" EntityType="Self.Passenger" />
+          <EntitySet Name="Plane" EntityType="Self.Plane" />
+          <EntitySet Name="Route" EntityType="Self.Route" />
+          <AssociationSet Name="FK_Route_Plane" Association="Self.FK_Route_Plane">
+            <End Role="Plane" EntitySet="Plane" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FlightFinalModelStoreContainer" CdmEntityContainer="FlightFinalEntities">
+          <EntitySetMapping Name="Airport">
+            <EntityTypeMapping TypeName="FlightFinalModel.Airport">
+              <MappingFragment StoreEntitySet="Airport">
+                <ScalarProperty Name="AirportID" ColumnName="AirportID" />
+                <ScalarProperty Name="AirportName" ColumnName="AirportName" />
+                <ScalarProperty Name="AirportCountry" ColumnName="AirportCountry" />
+                <ScalarProperty Name="AirportCity" ColumnName="AirportCity" />
+                <ScalarProperty Name="AirportAbbre" ColumnName="AirportAbbre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passenger">
+            <EntityTypeMapping TypeName="FlightFinalModel.Passenger">
+              <MappingFragment StoreEntitySet="Passenger">
+                <ScalarProperty Name="PassengerID" ColumnName="PassengerID" />
+                <ScalarProperty Name="PassengerName" ColumnName="PassengerName" />
+                <ScalarProperty Name="PassengerSurname" ColumnName="PassengerSurname" />
+                <ScalarProperty Name="PassengerTel" ColumnName="PassengerTel" />
+                <ScalarProperty Name="PassengerBirthDate" ColumnName="PassengerBirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plane">
+            <EntityTypeMapping TypeName="FlightFinalModel.Plane">
+              <MappingFragment StoreEntitySet="Plane">
+                <ScalarProperty Name="PlaneID" ColumnName="PlaneID" />
+                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
+                <ScalarProperty Name="PlaneType" ColumnName="PlaneType" />
+                <ScalarProperty Name="PlaneCapacity" ColumnName="PlaneCapacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Route">
+            <EntityTypeMapping TypeName="FlightFinalModel.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="RouteFlightNumber" ColumnName="RouteFlightNumber" />
+                <ScalarProperty Name="RoutePlaneID" ColumnName="RoutePlaneID" />
+                <ScalarProperty Name="RouteDepAirport" ColumnName="RouteDepAirport" />
+                <ScalarProperty Name="RouteArrAirport" ColumnName="RouteArrAirport" />
+                <ScalarProperty Name="RouteDepDate" ColumnName="RouteDepDate" />
+                <ScalarProperty Name="RouteArrTDate" ColumnName="RouteArrTDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

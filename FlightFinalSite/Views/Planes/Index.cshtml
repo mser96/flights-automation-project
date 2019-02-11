@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FlightFinalSite.Models.Plane>
+
+@{
+    ViewBag.Title = "Planes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlaneName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlaneType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlaneCapacity)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaneName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaneType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaneCapacity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PlaneID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PlaneID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PlaneID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<hr />
+<div>
+    @Html.ActionLink("Back to Options", "Index", "Home")
+</div>
